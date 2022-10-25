@@ -54,24 +54,37 @@ class Timer(customtkinter.CTk):
 
         self.time_timer_button_stop = customtkinter.CTkButton(master=self.frame_time_timer,
                                                                text="Стоп",
+                                                               height=20,
+                                                               width=40,
                                                                command=self.time_stop
                                                                )
-        self.time_timer_button_stop.grid(row=2, column=0, columnspan=4, pady=5, padx=5, sticky="nsew")
+        self.time_timer_button_stop.grid(row=2, column=0, columnspan=3, pady=5, padx=5, sticky="nsew")
 
         self.time_timer_button_start = customtkinter.CTkButton(master=self.frame_time_timer,
                                                               text="Старт",
                                                               command=self.time_start
                                                               )
-        self.time_timer_button_start.grid(row=2, column=4, columnspan=3, pady=5, padx=5, sticky="nsew")
+        self.time_timer_button_start.grid(row=2, column=3, columnspan=4, pady=5, padx=5, sticky="nsew")
 
-        self.set_add_time_entry = customtkinter.CTkEntry(master=self.frame_time_timer)
-        self.set_add_time_entry.grid(row=3, column=4, pady=5, padx=5, sticky="nsew")
-        self.set_add_time_entry.insert(0, '90')
+        self.set_add_time_entry = customtkinter.CTkEntry(master=self.frame_time_timer,
+                                                         justify='left'
+                                                         )
+        self.set_add_time_entry.grid(row=3, column=3, pady=5, padx=5, sticky="nsew")
+        self.set_add_time_entry.insert(0, '45')
 
         self.add_time_switch = customtkinter.CTkSwitch(master=self.frame_time_timer,
                                                        text=''
                                                        )
-        self.add_time_switch.grid(row=3, column=5, pady=5, padx=5)
+        self.add_time_switch.grid(row=3, column=5, pady=5, padx=5, sticky='nsew')
+
+        self.radio_stop = customtkinter.CTkCheckBox(master=self.frame_time_timer,
+                                                    text='')
+        self.radio_stop.grid(column=4, row=3, pady=2, sticky='nsew')
+
+        # self.add_time_switch2 = customtkinter.CTkSwitch(master=self.frame_time_timer,
+        #                                                text=''
+        #                                                )
+        # self.add_time_switch2.grid(row=3, column=4, pady=5, padx=5, sticky='nsew')
 
         self.add_time_label = customtkinter.CTkLabel(master=self.frame_time_timer,
                                                        text="Доп. время после минуты:",
@@ -80,7 +93,7 @@ class Timer(customtkinter.CTk):
                                                        corner_radius=5,  # <- custom corner radius
                                                        fg_color=("white", "gray38"),  # <- custom tuple-color
                                                        justify=tkinter.LEFT)
-        self.add_time_label.grid(row=3, column=0, columnspan=4, pady=5, padx=5, sticky="nsew")
+        self.add_time_label.grid(row=3, column=0, columnspan=3, pady=5, padx=5, sticky="nsew")
 
         self.time_timer_entry2 = customtkinter.CTkEntry(master=self.frame_time_timer,
                                                         height=30,
@@ -175,60 +188,4 @@ class Timer(customtkinter.CTk):
             self.a = [int(_) for _ in self.start.split(':')]
             self.start_seconds = self.a[0] * 3600 + self.a[1] * 60 + self.a[2]
             self.frozen_seconds = float(self.time_timer_entry2.get().split(':')[1])
-
-
-
-
-
-# class App(customtkinter.CTk):
-#     def __init__(self):
-#         super().__init__()
-#         self.grid_columnconfigure(0, weight=1)
-#         self.grid_rowconfigure((0, 1), weight=1)
-#         self.frame_left = customtkinter.CTkFrame(master=self)
-#         self.frame_left.grid(row=0, column=0, sticky="nswe")
-#         self.frame_left.columnconfigure(0, weight=1)
-#         self.frame_left.rowconfigure(0, weight=1)
-#         self.timer = Timer(self.frame_left)
-#         self.board_button = customtkinter.CTkButton(master=self.frame_left,
-#                                                          text="Показать табло",
-#                                                          command=self.show_board
-#                                                          )
-#         self.board_button.grid(row=1, column=0, sticky="nswe")
-#         App.mainloop(self)
-#
-#     def show_board(self):
-#         self.window = Board(self)
-#
-# class Board(customtkinter.CTkToplevel):
-#     def __init__(self, parent):
-#         super().__init__(parent)
-#
-#         self.geometry('%dx%d%+d+%d' % (1280, 720, self.winfo_screenwidth(), 0))
-#         self.overrideredirect(True)
-#
-#         self.board_time = parent.timer.time
-#         self.shown_time = self.board_time.get()
-#
-#         self.grid_columnconfigure(0, weight=1)
-#         self.grid_rowconfigure(0, weight=1)
-#         self.label = customtkinter.CTkLabel(master=self,
-#                                             text=parent.timer.time.get(),
-#                                             height=400,
-#                                             width=800,
-#                                             text_font=('Arials', 100, ''),
-#                                             anchor="center",
-#                                             corner_radius=5,  # <- custom corner radius
-#                                             fg_color=("white", "gray38"),  # <- custom tuple-color
-#                                             )
-#         self.label.grid(row=0, column=0)
-#         self.label.after(10, self.update12)
-#
-#     def update12(self):
-#         self.label.configure(text=self.board_time.get())
-#         self.label.after(10, self.update12)
-#         # self.label.after(10, self.update12)
-
-
-# app = App()
 

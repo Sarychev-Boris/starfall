@@ -7,6 +7,7 @@ import os
 from GUI.add_team import AddTeam
 from GUI.team_info import TeamInfo
 from GUI.event import NewEvent
+from GUI.team import Team
 import sqlite3
 
 
@@ -134,16 +135,13 @@ class TeamSelect(customtkinter.CTkToplevel):
     def select(self, event):
         self.selected = self.table.selection()
         self.team_data = self.table.item(self.selected[0]).get('values')
-        image = Image.open(self.team_data[2]).resize((250, 250))
-        self.team_frame.team_name.set(self.team_data[1])
-        self.team_frame.teamid = self.team_data[0]
+        self.team_frame.team = Team(self.team_data[1], self.team_data[0], self.team_data[2])
+        self.team_frame.team_entry_name.configure(textvariable=self.team_frame.team.name)
+
         self.team_frame.team_logo.destroy()
 
-        self.team_frame.logo_path = self.team_data[2]
-        self.logo_img = Image.open(self.team_frame.logo_path).resize((250, 250))
-
         self.team_frame.team_logo = customtkinter.CTkButton(master=self.team_frame.frame_team,
-                                                 image=ImageTk.PhotoImage(self.logo_img),
+                                                 image=ImageTk.PhotoImage(Image.open(self.team_frame.team.get_logo()).resize((250, 250))),
                                                  text='',
                                                  command=self.team_frame.set_logo
                                                  )

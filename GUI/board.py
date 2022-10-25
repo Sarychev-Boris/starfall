@@ -177,7 +177,7 @@ class Board(customtkinter.CTkToplevel):
             self.half_label_num.configure(text=self.half.get())
 
             self.label.configure(text=self.board_time.get())
-            self.label.after(10, self.update12)
+            self.label.after(500, self.update12)
 
     # Если включен переключатель для доп.таймера - включение другой функции обновления
     def show_add_timer(self):
@@ -191,7 +191,7 @@ class Board(customtkinter.CTkToplevel):
                                             # fg_color=("white", "gray38"),  # <- custom tuple-color
                                             )
         self.label2.grid(row=3, column=0, sticky="nsew")
-        self.label2.after(10, self.update13)
+        self.label2.after(500, self.update13)
 
     # Переопределить функцию обновления с назначением обновляемого таймера - дублируемый код
     def update13(self):
@@ -209,8 +209,8 @@ class Board(customtkinter.CTkToplevel):
             self.half_label_num.configure(text=self.half.get())
 
             self.label2.configure(text=self.add_board_time.get())
-            self.label2.after(10, self.update13)
+            self.label2.after(500, self.update13)
         else:
             self.label2.destroy()
             self.parent.timer.show_flag = False
-            self.label.after(10, self.update12)
+            self.label.after(500, self.update12)

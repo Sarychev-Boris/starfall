@@ -6,7 +6,7 @@ from GUI.timer import Timer
 from GUI.board import Board
 from GUI.intro import Intro
 from GUI.teams import TeamsTable, TeamSelect
-from GUI.team_frame import Team
+from GUI.team_frame import TeamFrame
 from GUI.statistics import Statistics
 from GUI.half_frame import Half
 from GUI.event import EventTable
@@ -108,8 +108,8 @@ class App(customtkinter.CTk):
 
         # Создание экземпляров TeamFrame и StatsFrame - заменить названия классов
 
-        self.team_1 = Team(master=self.frame_game)
-        self.team_2 = Team(master=self.frame_game, row=0, column=2)
+        self.team_1 = TeamFrame(master=self.frame_game)
+        self.team_2 = TeamFrame(master=self.frame_game, row=0, column=2)
         self.statistics = Statistics(self.frame_game, row=1, column=0)
 
         # Бинд горячих клавиш для назначения флагов владения мячом

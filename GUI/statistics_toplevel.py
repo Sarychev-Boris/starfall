@@ -38,14 +38,14 @@ class StatTopLevel(customtkinter.CTkToplevel):
                                                   fg_color=("white", "#212325")
                                                   )
         self.team1_frame.grid(row=0, column=0, rowspan=7, sticky='nsw')
-        self.team1_frame.rowconfigure((0, 1), weight=1)
+        self.team1_frame.rowconfigure((0, 1, 2), weight=1)
         self.team1_frame.columnconfigure(0, weight=1)
 
         self.team2_frame = customtkinter.CTkFrame(master=self,
                                                   fg_color=("white", "#212325")
                                                   )
         self.team2_frame.grid(row=0, column=4, rowspan=7, sticky='nse')
-        self.team2_frame.rowconfigure((0, 1), weight=1)
+        self.team2_frame.rowconfigure((0, 1, 2), weight=1)
         self.team2_frame.columnconfigure(0, weight=1)
 
         self.team1_logo = customtkinter.CTkButton(master=self.team1_frame,
@@ -54,7 +54,15 @@ class StatTopLevel(customtkinter.CTkToplevel):
                                                   state='disabled',
                                                   fg_color=("white", "#212325")
                                                   )
-        self.team1_logo.grid(row=0, column=0, rowspan=2, sticky='nsw')
+        self.team1_logo.grid(row=0, column=0, rowspan=2, sticky='nsew')
+
+        self.team1_score = customtkinter.CTkLabel(master=self.team1_frame,
+                                                  text=parent.team_1.team_score.get(),
+                                                  text_font=('Arials', (int(config["board"]["team1_score"])), ''),
+                                                  anchor="center",
+                                                  # fg_color=("white", "gray38")
+                                                  )
+        self.team1_score.grid(row=2, column=0, sticky='nsew')
 
         self.team2_logo = customtkinter.CTkButton(master=self.team2_frame,
                                                   text='',
@@ -62,21 +70,15 @@ class StatTopLevel(customtkinter.CTkToplevel):
                                                   state='disabled',
                                                   fg_color=("white", "#212325")
                                                   )
-        self.team2_logo.grid(row=0, column=4, rowspan=2, sticky='nse')
+        self.team2_logo.grid(row=0, column=0, rowspan=2, sticky='nsew')
 
-        # self.label_team1name = customtkinter.CTkLabel(master=self.team1_frame,
-        #                                              text=cur.execute(f"""SELECT name FROM team WHERE teamid = '{self.parent.team_1.teamid}';""").fetchone()[0],
-        #                                              height = 20,
-        #                                              text_font = ('Arials', (int(config["stats"]["team_name"])), '')
-        #                                              )
-        # self.label_team1name.grid(row=1, column=0, sticky='nsew')
-
-        # self.label_team2name = customtkinter.CTkLabel(master=self.team2_frame,
-        #                                              text=cur.execute(f"""SELECT name FROM team WHERE teamid = '{self.parent.team_2.teamid}';""").fetchone()[0],
-        #                                              height = 20,
-        #                                              text_font = ('Arials', (int(config["stats"]["team_name"])), '')
-        #                                              )
-        # self.label_team2name.grid(row=1, column=4, sticky='nsew')
+        self.team2_score = customtkinter.CTkLabel(master=self.team2_frame,
+                                                  text=parent.team_2.team_score.get(),
+                                                  text_font=('Arials', (int(config["board"]["team1_score"])), ''),
+                                                  anchor="center",
+                                                  # fg_color=("white", "gray38")
+                                                  )
+        self.team2_score.grid(row=2, column=0, sticky='nsew')
 
         list = ['Владение, %', 'Удары', 'Удары в створ', 'Угловые', 'Фолы', 'Желтые карточки', 'Красные карточки']
         i=0

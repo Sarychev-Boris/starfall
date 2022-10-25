@@ -2,6 +2,13 @@ from tkinter import ttk
 import customtkinter
 import tkinter
 import sqlite3
+from GUI.score_mixin import ScoreMixin
+
+class Meeting(ScoreMixin):
+    def __init__(self):
+        ScoreMixin.__init__(self)
+        list = ['Владение, %', 'Удары', 'Удары в створ', 'Угловые', 'Фолы', 'Желтые карточки', 'Красные карточки']
+
 
 class MeetingTable(customtkinter.CTkToplevel):
     def __init__(self, parent):
